@@ -16,6 +16,9 @@
       padding: 10px;
       width: 100%;
       text-align: center;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
     }
     #headerContainer {
       display: flex; /* Added to display the replicated cards in a row */
@@ -40,19 +43,24 @@
   </style>
 </head>
 <body>
-  <div id="header">
+  <div id="header" onclick="playSpeech()">
     Header Content
+    <button onclick="playSpeech()">Play</button>
     <div id="headerContainer"></div>
   </div>
       
   <div id="cardContainer">
-    <div class="replicatedCard red" onclick="replicateCard(this)"></div>
-    <div class="replicatedCard green" onclick="replicateCard(this)"></div>
-    <div class="replicatedCard blue" onclick="replicateCard(this)"></div>
-    <!-- Add more card elements with different colors as needed -->
+    <!-- Add 5 image elements with different sources -->
+    <img class="replicatedCard" src="food/apple.png" alt="Apple" onclick="replicateImage(this, 'Apple')">
+    <img class="replicatedCard" src="food/banana.png" alt="Banana" onclick="replicateImage(this, 'Banana')">
+    <img class="replicatedCard" src="food/bread.png" alt="Bread" onclick="replicateImage(this, 'Bread')">
+    <img class="replicatedCard" src="food/cake.png" alt="Cake" onclick="replicateImage(this, 'Cake')">
+    <img class="replicatedCard" src="food/chocolate.png" alt="Chocolate" onclick="replicateImage(this, 'Chocolate')">
   </div>
 
   <script>
+    let addedImages = []; // Array to store added images
+
     function replicateCard(card) {
       const newCard = card.cloneNode(true);
       newCard.classList.remove("replicatedCard");
@@ -61,6 +69,53 @@
       
       const headerContainer = document.getElementById("headerContainer");
       headerContainer.appendChild(newCard);
+
+      // Store information about added image
+      addedImages.push({
+        alt: newCard.alt,
+        src: newCard.src
+      });
+    }
+
+    function replicateImage(image, text) {
+      const newImage = image.cloneNode(true);
+      newImage.classList.remove("replicatedCard");
+      newImage.style.width = "50px"; // Set the width of the cloned image
+      newImage.style.height = "75px"; // Set the height of the cloned image
+      
+      const headerContainer = document.getElementById("headerContainer");
+      headerContainer.appendChild(newImage);
+
+      // Store information about added image
+      addedImages.push({
+        alt: newImage.alt,
+        src: newImage.src
+      });
+
+      // Create speech synthesis
+      const synth = window.speechSynthesis;
+      const utterance = new SpeechSynthesisUtterance(text);
+
+      // Play speech
+      synth.speak(utterance);
+    }
+
+    function playSpeech() {
+      let concatenatedText = "";
+
+      // Concatenate alt text of added images
+      addedImages.forEach(image => {
+        concatenatedText += image.alt + " ";
+      });
+
+      const synth = window.speechSynthesis;
+      const utterance = new SpeechSynthesisUtterance(concatenatedText.trim());
+
+      // Play speech
+      synth.speak(utterance);
+
+      // Initialize addedImages list to zero
+      addedImages = [];
     }
   </script>
 </body>
