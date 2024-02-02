@@ -83,7 +83,11 @@
       });
 
       // Update the addedColors array before playing the speech
-      playSpeech();
+       const synth = window.speechSynthesis;
+      const utterance = new SpeechSynthesisUtterance(text);
+
+      // Play speech
+      synth.speak(utterance);
     }
 
     function playSpeech() {
