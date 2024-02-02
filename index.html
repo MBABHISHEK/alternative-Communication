@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Card Replication</title>
+  <style>
+    body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    #header {
+      background-color: #333;
+      color: white;
+      padding: 10px;
+      width: 100%;
+      text-align: center;
+    }
+    #headerContainer {
+      display: flex; /* Added to display the replicated cards in a row */
+    }
+    #cardContainer {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .replicatedCard {
+      margin: 10px;
+      width: 100px; /* Adjust card width as needed */
+      height: 150px; /* Adjust card height as needed */
+      border: 1px solid #000;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+    .red { background-color: #ff5555; }
+    .green { background-color: #55ff55; }
+    .blue { background-color: #5555ff; }
+    /* Add more colors and styles as needed */
+  </style>
+</head>
+<body>
+  <div id="header">
+    Header Content
+    <div id="headerContainer"></div>
+  </div>
+      
+  <div id="cardContainer">
+    <div class="replicatedCard red" onclick="replicateCard(this)"></div>
+    <div class="replicatedCard green" onclick="replicateCard(this)"></div>
+    <div class="replicatedCard blue" onclick="replicateCard(this)"></div>
+    <!-- Add more card elements with different colors as needed -->
+  </div>
+
+  <script>
+    function replicateCard(card) {
+      const newCard = card.cloneNode(true);
+      newCard.classList.remove("replicatedCard");
+      newCard.style.width = "50px"; // Set the width of the cloned card
+      newCard.style.height = "75px"; // Set the height of the cloned card
+      
+      const headerContainer = document.getElementById("headerContainer");
+      headerContainer.appendChild(newCard);
+    }
+  </script>
+</body>
+</html>
