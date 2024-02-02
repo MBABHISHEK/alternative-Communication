@@ -45,7 +45,7 @@
 <body>
   <div id="header" onclick="playSpeech()">
     Header Content
-    <button onclick="playSpeech()">Play</button>
+    <button onclick="playButtonClicked()">Play</button>
     <div id="headerContainer"></div>
   </div>
       
@@ -115,7 +115,10 @@
       synth.speak(utterance);
 
       // Initialize addedImages list to zero
-      addedImages = [];
+    }
+
+    function playButtonClicked() {
+      playSpeech();
     }
   </script>
 </body>
