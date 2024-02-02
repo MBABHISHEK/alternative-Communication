@@ -36,9 +36,13 @@
       border-radius: 8px;
       cursor: pointer;
     }
-    .red { background-color: #ff5555; }
-    .green { background-color: #55ff55; }
-    .blue { background-color: #5555ff; }
+    .violet { background-color: #8a2be2; }
+    .indigo { background-color: #4b0082; }
+    .blue { background-color: #0000ff; }
+    .green { background-color: #00ff00; }
+    .yellow { background-color: #ffff00; }
+    .orange { background-color: #ffa500; }
+    .red { background-color: #ff0000; }
     /* Add more colors and styles as needed */
   </style>
 </head>
@@ -50,75 +54,53 @@
   </div>
       
   <div id="cardContainer">
-    <!-- Add 5 image elements with different sources -->
-    <img class="replicatedCard" src="food/apple.png" alt="Apple" onclick="replicateImage(this, 'Apple')">
-    <img class="replicatedCard" src="food/banana.png" alt="Banana" onclick="replicateImage(this, 'Banana')">
-    <img class="replicatedCard" src="food/bread.png" alt="Bread" onclick="replicateImage(this, 'Bread')">
-    <img class="replicatedCard" src="food/cake.png" alt="Cake" onclick="replicateImage(this, 'Cake')">
-    <img class="replicatedCard" src="food/chocolate.png" alt="Chocolate" onclick="replicateImage(this, 'Chocolate')">
+    <!-- Add 7 color elements with corresponding text -->
+    <div class="replicatedCard violet" onclick="replicateColor(this, 'Violet')"></div>
+    <div class="replicatedCard indigo" onclick="replicateColor(this, 'Indigo')"></div>
+    <div class="replicatedCard blue" onclick="replicateColor(this, 'Blue')"></div>
+    <div class="replicatedCard green" onclick="replicateColor(this, 'Green')"></div>
+    <div class="replicatedCard yellow" onclick="replicateColor(this, 'Yellow')"></div>
+    <div class="replicatedCard orange" onclick="replicateColor(this, 'Orange')"></div>
+    <div class="replicatedCard red" onclick="replicateColor(this, 'Red')"></div>
   </div>
 
   <script>
-    let addedImages = []; // Array to store added images
+    let addedColors = []; // Array to store added colors
 
-    function replicateCard(card) {
-      const newCard = card.cloneNode(true);
-      newCard.classList.remove("replicatedCard");
-      newCard.style.width = "50px"; // Set the width of the cloned card
-      newCard.style.height = "75px"; // Set the height of the cloned card
+    function replicateColor(colorElement, text) {
+      const newColorElement = colorElement.cloneNode(true);
+      newColorElement.classList.remove("replicatedCard");
+      newColorElement.style.width = "50px"; // Set the width of the cloned color
+      newColorElement.style.height = "75px"; // Set the height of the cloned color
       
       const headerContainer = document.getElementById("headerContainer");
-      headerContainer.appendChild(newCard);
+      headerContainer.appendChild(newColorElement);
 
-      // Store information about added image
-      /*addedImages.push({
-        alt: newCard.alt,
-        src: newCard.src
-      });*/
-    }
-
-    function replicateImage(image, text) {
-      const newImage = image.cloneNode(true);
-      newImage.classList.remove("replicatedCard");
-      newImage.style.width = "50px"; // Set the width of the cloned image
-      newImage.style.height = "75px"; // Set the height of the cloned image
-      
-      const headerContainer = document.getElementById("headerContainer");
-      headerContainer.appendChild(newImage);
-
-      // Store information about added image
-      addedImages.push({
-        alt: newImage.alt,
-        src: newImage.src
+      // Store information about added color
+      addedColors.push({
+        color: newColorElement.style.backgroundColor,
+        text: text
       });
 
-      // Create speech synthesis
-      const synth = window.speechSynthesis;
-      const utterance = new SpeechSynthesisUtterance(text);
-
-      // Play speech
-      synth.speak(utterance);
+      // Update the addedColors array before playing the speech
+      playSpeech();
     }
 
     function playSpeech() {
       let concatenatedText = "";
-      console.log(concatenatedText);
 
-      // Concatenate alt text of added images
-      addedImages.forEach(image => {
-        concatenatedText += image.alt + " ";
+      // Concatenate text of added colors
+      addedColors.forEach(color => {
+        concatenatedText += color.text + " ";
       });
 
       const synth = window.speechSynthesis;
       const utterance = new SpeechSynthesisUtterance(concatenatedText.trim());
 
-      
       // Play speech
-      console.log(concatenatedText);
-
       synth.speak(utterance);
 
-      // Initialize addedImages list to zero
+      // Initialize addedColors list to zero
     }
 
     function playButtonClicked() {
