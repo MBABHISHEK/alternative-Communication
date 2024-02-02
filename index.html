@@ -43,7 +43,7 @@
   </style>
 </head>
 <body>
-  <div id="header" onclick="playSpeech()">
+  <div id="header">
     Header Content
     <button onclick="playButtonClicked()">Play</button>
     <div id="headerContainer"></div>
@@ -71,10 +71,10 @@
       headerContainer.appendChild(newCard);
 
       // Store information about added image
-      addedImages.push({
+      /*addedImages.push({
         alt: newCard.alt,
         src: newCard.src
-      });
+      });*/
     }
 
     function replicateImage(image, text) {
@@ -102,6 +102,7 @@
 
     function playSpeech() {
       let concatenatedText = "";
+      console.log(concatenatedText);
 
       // Concatenate alt text of added images
       addedImages.forEach(image => {
@@ -111,7 +112,10 @@
       const synth = window.speechSynthesis;
       const utterance = new SpeechSynthesisUtterance(concatenatedText.trim());
 
+      
       // Play speech
+      console.log(concatenatedText);
+
       synth.speak(utterance);
 
       // Initialize addedImages list to zero
