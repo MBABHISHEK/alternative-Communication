@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Card Replication</title>
+  <style>
+    body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    #header {
+      background-color: #333;
+      color: white;
+      padding: 10px;
+      width: 100%;
+      text-align: center;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+    }
+    #headerContainer {
+      display: flex; /* Added to display the replicated cards in a row */
+    }
+    #cardContainer {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .replicatedCard {
+      margin: 10px;
+      width: 100px; /* Adjust card width as needed */
+      height: 150px; /* Adjust card height as needed */
+      border: 1px solid #000;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+    .red { background-color: #ff5555; }
+    .green { background-color: #55ff55; }
+    .blue { background-color: #5555ff; }
+    /* Add more colors and styles as needed */
+  </style>
+</head>
+<body>
+  <div id="header">
+    Header Content
+    <button onclick="playButtonClicked()">Play</button>
+    <div id="headerContainer"></div>
+  </div>
+      
+  <div id="cardContainer">
+    <!-- Add 26 image elements with different sources (A-Z) -->
+    <img class="replicatedCard" src="letters/A.png" alt="A" onclick="replicateImage(this, 'A')">
+    <img class="replicatedCard" src="letters/B.png" alt="B" onclick="replicateImage(this, 'B')">
+    <img class="replicatedCard" src="letters/C.png" alt="C" onclick="replicateImage(this, 'C')">
+    <img class="replicatedCard" src="letters/D.png" alt="D" onclick="replicateImage(this, 'D')">
+    <img class="replicatedCard" src="letters/E.png" alt="E" onclick="replicateImage(this, 'E')">
+    <img class="replicatedCard" src="letters/F.png" alt="F" onclick="replicateImage(this, 'F')">
+    <img class="replicatedCard" src="letters/G.png" alt="G" onclick="replicateImage(this, 'G')">
+    <img class="replicatedCard" src="letters/H.png" alt="H" onclick="replicateImage(this, 'H')">
+    <img class="replicatedCard" src="letters/I.png" alt="I" onclick="replicateImage(this, 'I')">
+    <img class="replicatedCard" src="letters/J.png" alt="J" onclick="replicateImage(this, 'J')">
+    <img class="replicatedCard" src="letters/K.png" alt="K" onclick="replicateImage(this, 'K')">
+    <img class="replicatedCard" src="letters/L.png" alt="L" onclick="replicateImage(this, 'L')">
+    <img class="replicatedCard" src="letters/M.png" alt="M" onclick="replicateImage(this, 'M')">
+    <img class="replicatedCard" src="letters/N.png" alt="N" onclick="replicateImage(this, 'N')">
+    <img class="replicatedCard" src="letters/O.png" alt="O" onclick="replicateImage(this, 'O')">
+    <img class="replicatedCard" src="letters/P.png" alt="P" onclick="replicateImage(this, 'P')">
+    <img class="replicatedCard" src="letters/Q.png" alt="Q" onclick="replicateImage(this, 'Q')">
+    <img class="replicatedCard" src="letters/R.png" alt="R" onclick="replicateImage(this, 'R')">
+    <img class="replicatedCard" src="letters/S.png" alt="S" onclick="replicateImage(this, 'S')">
+    <img class="replicatedCard" src="letters/T.png" alt="T" onclick="replicateImage(this, 'T')">
+    <img class="replicatedCard" src="letters/U.png" alt="U" onclick="replicateImage(this, 'U')">
+    <img class="replicatedCard" src="letters/V.png" alt="V" onclick="replicateImage(this, 'V')">
+    <img class="replicatedCard" src="letters/W.png" alt="W" onclick="replicateImage(this, 'W')">
+    <img class="replicatedCard" src="letters/X.png" alt="X" onclick="replicateImage(this, 'X')">
+    <img class="replicatedCard" src="letters/Y.png" alt="Y" onclick="replicateImage(this, 'Y')">
+    <img class="replicatedCard" src="letters/Z.png" alt="Z" onclick="replicateImage(this, 'Z')">
+  </div>
+
+  <script>
+    let addedImages = []; // Array to store added images
+
+    function replicateCard(card) {
+      const newCard = card.cloneNode(true);
+      newCard.classList.remove("replicatedCard");
+      newCard.style.width = "50px"; // Set the width of the cloned card
+      newCard.style.height = "75px"; // Set the height of the cloned card
+      
+      const headerContainer = document.getElementById("headerContainer");
+      headerContainer.appendChild(newCard);
+
+      // Store information about added image
+      /*addedImages.push({
+        alt: newCard.alt,
+        src: newCard.src
+      });*/
+    }
+
+    function replicateImage(image, text) {
+      const newImage = image.cloneNode(true);
+      newImage.classList.remove("replicatedCard");
+      newImage.style.width = "50px"; // Set the width of the cloned image
+      newImage.style.height = "75px"; // Set the height of the cloned image
+      
+      const headerContainer = document.getElementById("headerContainer");
+      headerContainer.appendChild(newImage);
+
+      // Store information about added image
+      addedImages.push({
+        alt: newImage.alt,
+        src: newImage.src
+      });
+
+      // Create speech synthesis
+      const synth = window.speechSynthesis;
+      const utterance = new SpeechSynthesisUtterance(text);
+
+      // Play speech
+      synth.speak(utterance);
+    }
+
+    function playSpeech() {
+      let concatenatedText = "";
+      console.log(concatenatedText);
+
+      // Concatenate alt text of added images
+      addedImages.forEach(image => {
+        concatenatedText += image.alt + " ";
+      });
+
+      const synth = window.speechSynthesis;
+      const utterance = new SpeechSynthesisUtterance(concatenatedText.trim());
+
+      
+      // Play speech
+      console.log(concatenatedText);
+
+      synth.speak(utterance);
+
+      // Initialize addedImages list to zero
+    }
+
+    function playButtonClicked() {
+      playSpeech();
+    }
+  </script>
+</body>
+</html>
