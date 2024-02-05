@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Card Replication</title>
   <style>
-    body {
+   body {
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -27,6 +27,10 @@
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
+      background-color: #f0f0f0; /* Set background color for card container */
+      padding: 20px;
+      border-radius: 10px;
+      margin-top: 20px;
     }
     .replicatedCard {
       margin: 10px;
@@ -35,21 +39,45 @@
       border: 1px solid #000;
       border-radius: 8px;
       cursor: pointer;
+      transition: transform 0.3s ease-in-out; /* Added hover animation */
+    }
+    .replicatedCard:hover {
+      transform: scale(1.1); /* Added hover effect */
     }
     .red { background-color: #ff5555; }
     .green { background-color: #55ff55; }
     .blue { background-color: #5555ff; }
     /* Add more colors and styles as needed */
+
+    #buttonContainer {
+      display: flex;
+      align-items: center;
+      margin-left: 10px;
+    }
+    button {
+      margin-right: 10px;
+      background-color: #333;
+      color: white;
+      padding: 8px 16px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease-in-out; /* Added hover animation */
+    }
+    button:hover {
+      background-color: #555; /* Change the background color on hover */
+    }
   </style>
 </head>
 <body>
   <div id="header">
     Food
   </div>
-  <div>
+  <div id="buttonContainer">
     <button onclick="playButtonClicked()">Play</button>
-    <div id="headerContainer"></div>
+    <button onclick="deleteLastImage()">Delete</button>
   </div>
+  <div id="headerContainer"></div>
       
   <div id="cardContainer">
     <!-- Add 5 image elements with different sources -->
@@ -104,7 +132,6 @@
 
     function playSpeech() {
       let concatenatedText = "";
-      console.log(concatenatedText);
 
       // Concatenate alt text of added images
       addedImages.forEach(image => {
@@ -114,10 +141,7 @@
       const synth = window.speechSynthesis;
       const utterance = new SpeechSynthesisUtterance(concatenatedText.trim());
 
-      
       // Play speech
-      console.log(concatenatedText);
-
       synth.speak(utterance);
 
       // Initialize addedImages list to zero
@@ -126,6 +150,18 @@
     function playButtonClicked() {
       playSpeech();
     }
+
+    function deleteLastImage() {
+      const headerContainer = document.getElementById("headerContainer");
+      const lastImage = headerContainer.lastChild;
+
+      if (lastImage) {
+        addedImages.pop(); // Remove the last image from the array
+        headerContainer.removeChild(lastImage); // Remove the last image element
+      }
+    }
   </script>
 </body>
 </html>
+
+
