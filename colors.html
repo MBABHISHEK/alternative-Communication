@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Card Replication</title>
+  <title>Colors </title>
   <style>
     body {
       display: flex;
@@ -32,17 +32,13 @@
       margin: 10px;
       width: 100px; /* Adjust card width as needed */
       height: 150px; /* Adjust card height as needed */
-      border: 1px solid #000;
+      /*border: 1px solid #000;*/
       border-radius: 8px;
       cursor: pointer;
     }
-    .violet { background-color: #8a2be2; }
-    .indigo { background-color: #4b0082; }
-    .blue { background-color: #0000ff; }
-    .green { background-color: #00ff00; }
-    .yellow { background-color: #ffff00; }
-    .orange { background-color: #ffa500; }
-    .red { background-color: #ff0000; }
+    .red { background-color: #ff5555; }
+    .green { background-color: #55ff55; }
+    .blue { background-color: #5555ff; }
     /* Add more colors and styles as needed */
   </style>
 </head>
@@ -54,53 +50,79 @@
   </div>
       
   <div id="cardContainer">
-    <!-- Add 7 color elements with corresponding text -->
-    <div class="replicatedCard violet" onclick="replicateColor(this, 'Violet')"></div>
-    <div class="replicatedCard indigo" onclick="replicateColor(this, 'Indigo')"></div>
-    <div class="replicatedCard blue" onclick="replicateColor(this, 'Blue')"></div>
-    <div class="replicatedCard green" onclick="replicateColor(this, 'Green')"></div>
-    <div class="replicatedCard yellow" onclick="replicateColor(this, 'Yellow')"></div>
-    <div class="replicatedCard orange" onclick="replicateColor(this, 'Orange')"></div>
-    <div class="replicatedCard red" onclick="replicateColor(this, 'Red')"></div>
+
+    <!-- Add 9 number elements with different sources -->
+    <img class="replicatedCard" src="11.colours\1.Violet.png" alt="Violet" onclick="replicateImage(this, 'Violet')">
+    <img class="replicatedCard" src="11.colours\2.Indigo.png" alt="Indigo" onclick="replicateImage(this, 'Indigo')">
+
+    <img class="replicatedCard" src="11.colours\3.Blue.png" alt="Blue" onclick="replicateImage(this, 'Blue')">
+    <img class="replicatedCard" src="11.colours\4.Green.png" alt="Green"onclick="replicateImage(this, 'Green')">
+    <img class="replicatedCard" src="11.colours\5.Yellow.png" alt="Yellow" onclick="replicateImage(this, 'Yellow')">
+    <img class="replicatedCard" src="11.colours\6.Orange.png" alt="Orange" onclick="replicateImage(this, 'Orange')">
+    <img class="replicatedCard" src="11.colours\7.Red.png" alt="Red" onclick="replicateImage(this, 'Red')">
   </div>
 
   <script>
-    let addedColors = []; // Array to store added colors
+    let addedImages = []; // Array to store added images
 
-    function replicateColor(colorElement, text) {
-      const newColorElement = colorElement.cloneNode(true);
-      newColorElement.classList.remove("replicatedCard");
-      newColorElement.style.width = "50px"; // Set the width of the cloned color
-      newColorElement.style.height = "75px"; // Set the height of the cloned color
+    function replicateCard(card) {
+      const newCard = card.cloneNode(true);
+      newCard.classList.remove("replicatedCard");
+      newCard.style.width = "50px"; // Set the width of the cloned card
+      newCard.style.height = "75px"; // Set the height of the cloned card
       
       const headerContainer = document.getElementById("headerContainer");
-      headerContainer.appendChild(newColorElement);
+      headerContainer.appendChild(newCard);
 
-      // Store information about added color
-      addedColors.push({
-        color: newColorElement.style.backgroundColor,
-        text: text
+      // Store information about added image
+      /*addedImages.push({
+        alt: newCard.alt,
+        src: newCard.src
+      });*/
+    }
+
+    function replicateImage(image, text) {
+      const newImage = image.cloneNode(true);
+      newImage.classList.remove("replicatedCard");
+      newImage.style.width = "50px"; // Set the width of the cloned image
+      newImage.style.height = "75px"; // Set the height of the cloned image
+      
+      const headerContainer = document.getElementById("headerContainer");
+      headerContainer.appendChild(newImage);
+
+      // Store information about added image
+      addedImages.push({
+        alt: newImage.alt,
+        src: newImage.src
       });
 
-      // Update the addedColors array before playing the speech
-      playSpeech();
+      // Create speech synthesis
+      const synth = window.speechSynthesis;
+      const utterance = new SpeechSynthesisUtterance(text);
+
+      // Play speech
+      synth.speak(utterance);
     }
 
     function playSpeech() {
       let concatenatedText = "";
+      console.log(concatenatedText);
 
-      // Concatenate text of added colors
-      addedColors.forEach(color => {
-        concatenatedText += color.text + " ";
+      // Concatenate alt text of added images
+      addedImages.forEach(image => {
+        concatenatedText += image.alt + " ";
       });
 
       const synth = window.speechSynthesis;
       const utterance = new SpeechSynthesisUtterance(concatenatedText.trim());
 
+      
       // Play speech
+      console.log(concatenatedText);
+
       synth.speak(utterance);
 
-      // Initialize addedColors list to zero
+      // Initialize addedImages list to zero
     }
 
     function playButtonClicked() {
