@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>General</title>
+  <style>
+    body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    #header {
+      background-color: #333;
+      color: white;
+      padding: 10px;
+      width: 100%;
+      text-align: center;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+    }
+    #headerContainer {
+      display: flex; /* Added to display the replicated cards in a row */
+    }
+    #cardContainer {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .replicatedCard {
+      margin: 10px;
+      width: 100px; /* Adjust card width as needed */
+      height: 150px; /* Adjust card height as needed */
+      /*border: 1px solid #000;*/
+      border-radius: 8px;
+      cursor: pointer;
+    }
+    .red { background-color: #ff5555; }
+    .green { background-color: #55ff55; }
+    .blue { background-color: #5555ff; }
+    /* Add more colors and styles as needed */
+  </style>
+</head>
+<body>
+  <div id="header">
+    Header Content
+    <button onclick="playButtonClicked()">Play</button>
+    <div id="headerContainer"></div>
+  </div>
+      
+  <div id="cardContainer">
+
+    <!-- Add 9 number elements with different sources -->
+    <img class="replicatedCard" src="6.General\1.IAmHungry.png" alt="IAmHungry" onclick="replicateImage(this, 'I Am Hungry')">
+    <img class="replicatedCard" src="6.General\2.IWant.png" alt="I Want" onclick="replicateImage(this, 'I Want')">
+    <img class="replicatedCard" src="6.General\3.Bread.png" alt="Bread" onclick="replicateImage(this, 'Bread')">
+    <img class="replicatedCard" src="6.General\4.Water.png" alt="Water" onclick="replicateImage(this, 'Water')">
+    <img class="replicatedCard" src="6.General\5.BreakFast.png" alt="BreakFast" onclick="replicateImage(this, 'BreakFast')">
+    <img class="replicatedCard" src="6.General\6.Food.png" alt="Food"onclick="replicateImage(this, 'Food')">
+    <img class="replicatedCard" src="6.General\7.MintTea.png" alt="Mint" onclick="replicateImage(this, 'Mint Tea')">
+    <img class="replicatedCard" src="6.General\8.INeedHelp.png" alt="INeedHelp" onclick="replicateImage(this, 'I Need Help')">
+    <img class="replicatedCard" src="6.General\9.GoToSleep.png" alt="GoToSleep" onclick="replicateImage(this, 'Go To Sleep')">
+  </div>
+
+  <script>
+    let addedImages = []; // Array to store added images
+
+    function replicateCard(card) {
+      const newCard = card.cloneNode(true);
+      newCard.classList.remove("replicatedCard");
+      newCard.style.width = "50px"; // Set the width of the cloned card
+      newCard.style.height = "75px"; // Set the height of the cloned card
+      
+      const headerContainer = document.getElementById("headerContainer");
+      headerContainer.appendChild(newCard);
+
+      // Store information about added image
+      /*addedImages.push({
+        alt: newCard.alt,
+        src: newCard.src
+      });*/
+    }
+
+    function replicateImage(image, text) {
+      const newImage = image.cloneNode(true);
+      newImage.classList.remove("replicatedCard");
+      newImage.style.width = "50px"; // Set the width of the cloned image
+      newImage.style.height = "75px"; // Set the height of the cloned image
+      
+      const headerContainer = document.getElementById("headerContainer");
+      headerContainer.appendChild(newImage);
+
+      // Store information about added image
+      addedImages.push({
+        alt: newImage.alt,
+        src: newImage.src
+      });
+
+      // Create speech synthesis
+      const synth = window.speechSynthesis;
+      const utterance = new SpeechSynthesisUtterance(text);
+
+      // Play speech
+      synth.speak(utterance);
+    }
+
+    function playSpeech() {
+      let concatenatedText = "";
+      console.log(concatenatedText);
+
+      // Concatenate alt text of added images
+      addedImages.forEach(image => {
+        concatenatedText += image.alt + " ";
+      });
+
+      const synth = window.speechSynthesis;
+      const utterance = new SpeechSynthesisUtterance(concatenatedText.trim());
+
+      
+      // Play speech
+      console.log(concatenatedText);
+
+      synth.speak(utterance);
+
+      // Initialize addedImages list to zero
+    }
+
+    function playButtonClicked() {
+      playSpeech();
+    }
+  </script>
+</body>
+</html>
