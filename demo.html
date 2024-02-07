@@ -3,129 +3,171 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Dashboard</title>
-  <!-- Bootstrap CSS -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <title>Card Replication</title>
   <style>
     body {
       display: flex;
       flex-direction: column;
       align-items: center;
-      background-color: #b3d0ff; /* Set the background color of the body */
+      background-color:#9afcb3;
+      margin: 0;
+      padding: 0;
     }
-    .navbar {
-      background-color: #343a40; /* Dark color for the navbar */
-      border-radius: 0; /* Add border-radius to navbar corners */
-      width: 100%; /* Cover the entire screen width */
-    }
-    .navbar-brand, .navbar-nav .nav-link {
-      color: #ffffff; /* White text color */
-    }
-    .navbar-brand:hover, .navbar-nav .nav-link:hover {
-      color: #adb5bd; /* Lighter text color on hover */
-    }
-    .navbar-collapse {
-      justify-content: center; /* Center align the navbar items */
-    }
-    .navbar-nav {
-      width: 100%; /* Full width for the navbar */
-    }
-    .dashboard-section {
-      margin-top: 20px;
+    #header {
+      background-color: #333;
+      color: white;
+      padding: 10px;
+      width: 100%;
       text-align: center;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 1000;
     }
-    .section-header {
+    #header .btn {
+      border: none;
+      background: none;
+      color: white;
+      cursor: pointer;
       font-size: 20px;
-      font-weight: bold;
-      margin-bottom: 10px;
+      margin: 0 10px;
     }
-    .card-container {
+    #headerContainer {
+      margin-top: 60px; /* Adjust to give space below header */
+      width: 100%;
+      overflow-x: auto;
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
+
+      padding-top: 20px; /* Adjust as needed */
     }
-    .card {
-      margin: 10px;
-      padding-left: 20px; /* Increase left padding to accommodate the triangle */
-      position: relative; /* Needed for positioning the triangle */
-      width: 120px;
-      height: 120px;
-      border: 1px solid #000;
-      border-radius: 8px;
-      cursor: pointer;
+    #cardContainer {
       display: flex;
-      align-items: center;
+      flex-wrap: wrap;
       justify-content: center;
-      font-size: 16px;
-      text-decoration: none;
-      color: inherit;
-      transition: transform 0.3s ease; /* Adding animation to the cards */
+      position:sticky;
     }
-    .card:hover {
-      transform: scale(1.1); /* Scaling up the card on hover */
+    .cardContainer {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
-    .card::before {
-      content: '';
-      position: absolute;
-      left: 0;
-      top: 50%;
-      transform: translateY(-50%);
-      width: 0;
-      height: 0;
-      border-style: solid;
-      border-width: 10px 0 10px 10px;
-      border-color: transparent transparent transparent #000; /* Adjust color as needed */
+    .replicatedCard {
+      margin: 10px;
+      width: 200px; /* Adjust card width as needed */
+      height: 250px; /* Adjust card height as needed */
+      border-radius: 25px;
+      cursor: pointer;
     }
-    .food { background-color: #ffdb58; }
-    .alphabet { background-color: #add8e6; }
-    .color { background-color: #ffa07a; }
-    .number { background-color: #98fb98; }
+    /* Add more colors and styles as needed */
   </style>
 </head>
 <body>
-  <!-- Bootstrap Navbar -->
-  <nav class="navbar navbar-expand-lg">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="#">Dashboard</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-        <ul class="navbar-nav">
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">Home</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Link</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Link</a>
-          </li>
-        </ul>
-      </div>
+  <div id="header">
+    <button class="btn" onclick="playButtonClicked()">&#9654;</button>
+    <button class="btn" onclick="deleteLastImage()">&#10006;</button>
+  </div>
+      
+  <div id="headerContainer">
+    <!-- Add image elements with different sources and paragraphs -->
+  </div>
+  <div id="cardContainer">
+    <!-- Add image elements with different sources and paragraphs -->
+    <div class="cardContainer">
+      <img class="replicatedCard" src="1.Technology\1.MobileDevice.png" alt="Mobile Device" onclick="replicateImage(this, 'Mobile Device')">
+      <h3>Mobile Device</h3>
     </div>
-  </nav>
-
-  <div class="dashboard-section">
-    <div class="section-header">Alternative Communication</div>
-    <div class="card-container">
-      <a href="technology.html" class="card food">Technology</a>
-      <a href="healthcare.html" class="card alphabet">Health Care</a>
-      <a href="covid.html" class="card color">Covid</a>
-      <a href="covidterms.html" class="card number">Covid Terms</a>
-      <a href="category.html" class="card food">Category</a>
-      <a href="general.html" class="card alphabet">General</a>
-      <a href="dailyhygiene.html" class="card color">DailyHygiene</a>
-      <a href="food.html" class="card number">FOOD</a>
-      <a href="letter.html" class="card food">Letter</a>
-      <a href="number.html" class="card alphabet">Numbers</a>
-      <a href="colors.html" class="card color">Colors</a>
-      <a href="demo.html" class="card number">Demo</a>
-      <!-- Add more food items as needed -->
+    <div class="cardContainer">
+      <img class="replicatedCard" src="1.Technology\2.Email.png" alt="email" onclick="replicateImage(this, 'email')">
+      <p>Email</p>
+    </div>
+    <div class="cardContainer">
+      <img class="replicatedCard" src="1.Technology\3.EmergencyPhone.png" alt="emergency phone" onclick="replicateImage(this, 'emergency phone')">
+      <p>Emergency Phone</p>
+    </div>
+    <div class="cardContainer">
+      <img class="replicatedCard" src="1.Technology\4.Post.png" alt="post" onclick="replicateImage(this, 'post')">
+      <p>Post</p>
+    </div>
+    <div class="cardContainer">
+      <img class="replicatedCard" src="1.Technology\5.InformationTechnology.png" alt="Information technology" onclick="replicateImage(this, 'Information technology')">
+      <p>Information Technology</p>
+    </div>
+    <div class="cardContainer">
+      <img class="replicatedCard" src="1.Technology\6.ComputerEngineer.png" alt="computer engineer" onclick="replicateImage(this, 'computer engineer')">
+      <p>Computer Engineer</p>
+    </div>
+    <div class="cardContainer">
+      <img class="replicatedCard" src="1.Technology\7.MobilePhone.png" alt="mobile phone" onclick="replicateImage(this, 'mobile phone')">
+      <p>Mobile Phone</p>
+    </div>
+    <div class="cardContainer">
+      <img class="replicatedCard" src="1.Technology\8.MobilePhoneBag.png" alt="mobilephone bag" onclick="replicateImage(this, 'Mobilephone bag')">
+      <p>Mobilephone Bag</p>
+    </div>
+    <div class="cardContainer">
+      <img class="replicatedCard" src="1.Technology\9.SpeakOnThePhone.png" alt="Speak on the phone" onclick="replicateImage(this, 'Speak on the phone')">
+      <p>Speak on the Phone</p>
     </div>
   </div>
 
-  <!-- Bootstrap JavaScript (optional, for certain components) -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    let addedImages = []; // Array to store added images
+
+    function replicateImage(image, text) {
+      const newImage = image.cloneNode(true);
+      newImage.classList.remove("replicatedCard");
+      newImage.style.width = "50px"; // Set the width of the cloned image
+      newImage.style.height = "75px"; // Set the height of the cloned image
+      
+      const headerContainer = document.getElementById("headerContainer");
+      headerContainer.appendChild(newImage);
+
+      // Store information about added image
+      addedImages.push({
+        alt: newImage.alt,
+        src: newImage.src
+      });
+
+      // Create speech synthesis
+      const synth = window.speechSynthesis;
+      const utterance = new SpeechSynthesisUtterance(text);
+
+      // Play speech
+      synth.speak(utterance);
+    }
+
+    function deleteLastImage() {
+      const headerContainer = document.getElementById("headerContainer");
+      const lastImage = headerContainer.lastChild;
+      if (lastImage) {
+        headerContainer.removeChild(lastImage);
+        addedImages.pop(); // Remove the last added image from the array
+      }
+    }
+
+    function playSpeech() {
+      let concatenatedText = "";
+
+      // Concatenate alt text of added images
+      addedImages.forEach(image => {
+        concatenatedText += image.alt + " ";
+      });
+
+      const synth = window.speechSynthesis;
+      const utterance = new SpeechSynthesisUtterance(concatenatedText.trim());
+
+      // Play speech
+      synth.speak(utterance);
+    }
+
+    function playButtonClicked() {
+      playSpeech();
+    }
+  </script>
 </body>
 </html>
