@@ -29,6 +29,12 @@
       flex-wrap: wrap;
       justify-content: center;
     }
+    .cardContainer {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin: 10px;
+    }
     .replicatedCard {
       margin: 10px;
       width: 200px; /* Adjust card width as needed */
@@ -53,34 +59,39 @@
       
   <div id="cardContainer">
     <!-- Health Section -->
-    <img class="replicatedCard" src="2.HealthCare\1.Hospital.png" alt="hospital" onclick="replicateImage(this, 'hospital')">
-    <img class="replicatedCard" src="2.HealthCare\2.Doctor.png" alt="doctor" onclick="replicateImage(this, 'doctor')">
-    <img class="replicatedCard" src="2.HealthCare\3.Medicines.png" alt="medicines" onclick="replicateImage(this, 'medicines')">
-    <img class="replicatedCard" src="2.HealthCare\4.Ambulance.png" alt="ambulance" onclick="replicateImage(this, 'ambulance')">
-    <img class="replicatedCard" src="2.HealthCare\5.MedicalExam.png" alt="Medical Exam" onclick="replicateImage(this, 'Medical Exam')">
-    <img class="replicatedCard" src="2.HealthCare\6.IntensiveCareUnit.png" alt="intensive care unit" onclick="replicateImage(this, 'intensive care unit')">
-    <img class="replicatedCard" src="2.HealthCare\7.Healthy.png" alt="healthy" onclick="replicateImage(this, 'healthy')">
+    <div class="cardContainer">
+      <img class="replicatedCard" src="2.HealthCare\1.Hospital.png" alt="hospital" onclick="replicateImage(this, 'hospital')">
+      <p>Hospital</p>
+    </div>
+    <div class="cardContainer">
+      <img class="replicatedCard" src="2.HealthCare\2.Doctor.png" alt="doctor" onclick="replicateImage(this, 'doctor')">
+      <p>Doctor</p>
+    </div>
+    <div class="cardContainer">
+      <img class="replicatedCard" src="2.HealthCare\3.Medicines.png" alt="medicines" onclick="replicateImage(this, 'medicines')">
+      <p>Medicines</p>
+    </div>
+    <div class="cardContainer">
+      <img class="replicatedCard" src="2.HealthCare\4.Ambulance.png" alt="ambulance" onclick="replicateImage(this, 'ambulance')">
+      <p>Ambulance</p>
+    </div>
+    <div class="cardContainer">
+      <img class="replicatedCard" src="2.HealthCare\5.MedicalExam.png" alt="Medical Exam" onclick="replicateImage(this, 'Medical Exam')">
+      <p>Medical Exam</p>
+    </div>
+    <div class="cardContainer">
+      <img class="replicatedCard" src="2.HealthCare\6.IntensiveCareUnit.png" alt="intensive care unit" onclick="replicateImage(this, 'intensive care unit')">
+      <p>Intensive Care Unit</p>
+    </div>
+    <div class="cardContainer">
+      <img class="replicatedCard" src="2.HealthCare\7.Healthy.png" alt="healthy" onclick="replicateImage(this, 'healthy')">
+      <p>Healthy</p>
+    </div>
     <!-- Add more health images -->
   </div>
 
   <script>
     let addedImages = []; // Array to store added images
-
-    function replicateCard(card) {
-      const newCard = card.cloneNode(true);
-      newCard.classList.remove("replicatedCard");
-      newCard.style.width = "50px"; // Set the width of the cloned card
-      newCard.style.height = "75px"; // Set the height of the cloned card
-      
-      const headerContainer = document.getElementById("headerContainer");
-      headerContainer.appendChild(newCard);
-
-      // Store information about added image
-      /*addedImages.push({
-        alt: newCard.alt,
-        src: newCard.src
-      });*/
-    }
 
     function replicateImage(image, text) {
       const newImage = image.cloneNode(true);
@@ -107,7 +118,6 @@
 
     function playSpeech() {
       let concatenatedText = "";
-      console.log(concatenatedText);
 
       // Concatenate alt text of added images
       addedImages.forEach(image => {
@@ -117,13 +127,8 @@
       const synth = window.speechSynthesis;
       const utterance = new SpeechSynthesisUtterance(concatenatedText.trim());
 
-      
       // Play speech
-      console.log(concatenatedText);
-
       synth.speak(utterance);
-
-      // Initialize addedImages list to zero
     }
 
     function playButtonClicked() {
