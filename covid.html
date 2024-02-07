@@ -53,37 +53,51 @@
       
   <div id="cardContainer">
     <!-- Health Section -->
-    <img class="replicatedCard" src="3.Covid\1.Virus.png" alt="virus" onclick="replicateImage(this, 'virus')">
-    <img class="replicatedCard" src="3.Covid\2.Epidemic.png" alt="epidemic" onclick="replicateImage(this, 'epidemic')">
-    <img class="replicatedCard" src="3.Covid\3.Nurse.png" alt="nurse" onclick="replicateImage(this, 'nurse')">
-    <img class="replicatedCard" src="3.Covid\4.ElderlyManWithMask.png" alt="elderly man with mask" onclick="replicateImage(this, 'elderly man with mask')">
-    <img class="replicatedCard" src="3.Covid\5.Vaccinate.png" alt="vaccinate" onclick="replicateImage(this, 'vaccinate')">
-    <img class="replicatedCard" src="3.Covid\6.ElderlyWomanWithMask.png" alt="elderly man with mask" onclick="replicateImage(this, 'elderly man with mask')">
-    <img class="replicatedCard" src="3.Covid\7.WalkInClinic.png" alt="walk in clinic" onclick="replicateImage(this, 'walk in clinic')">
-    <img class="replicatedCard" src="3.Covid\8.PulseOxiMetry.png" alt="pulse oximetry" onclick="replicateImage(this, 'pulse oximetry')">
-    <img class="replicatedCard" src="3.Covid\9.PutOnTheFaceMask.png" alt="put on the face mask" onclick="replicateImage(this, 'put on the face mask')">
-    <img class="replicatedCard" src="3.Covid\10.GirlWithTheMask.png" alt="girl with mask" onclick="replicateImage(this, 'girl with the mask')">
+    <div class="cardContainer">
+      <img class="replicatedCard" src="3.Covid\1.Virus.png" alt="virus" onclick="replicateImage(this, 'virus')">
+      <p>Virus</p>
+    </div>
+    <div class="cardContainer">
+      <img class="replicatedCard" src="3.Covid\2.Epidemic.png" alt="epidemic" onclick="replicateImage(this, 'epidemic')">
+      <p>Epidemic</p>
+    </div>
+    <div class="cardContainer">
+      <img class="replicatedCard" src="3.Covid\3.Nurse.png" alt="nurse" onclick="replicateImage(this, 'nurse')">
+      <p>Nurse</p>
+    </div>
+    <div class="cardContainer">
+      <img class="replicatedCard" src="3.Covid\4.ElderlyManWithMask.png" alt="elderly man with mask" onclick="replicateImage(this, 'elderly man with mask')">
+      <p>Elderly Man with Mask</p>
+    </div>
+    <div class="cardContainer">
+      <img class="replicatedCard" src="3.Covid\5.Vaccinate.png" alt="vaccinate" onclick="replicateImage(this, 'vaccinate')">
+      <p>Vaccinate</p>
+    </div>
+    <div class="cardContainer">
+      <img class="replicatedCard" src="3.Covid\6.ElderlyWomanWithMask.png" alt="elderly woman with mask" onclick="replicateImage(this, 'elderly woman with mask')">
+      <p>Elderly Woman with Mask</p>
+    </div>
+    <div class="cardContainer">
+      <img class="replicatedCard" src="3.Covid\7.WalkInClinic.png" alt="walk in clinic" onclick="replicateImage(this, 'walk in clinic')">
+      <p>Walk-in Clinic</p>
+    </div>
+    <div class="cardContainer">
+      <img class="replicatedCard" src="3.Covid\8.PulseOxiMetry.png" alt="pulse oximetry" onclick="replicateImage(this, 'pulse oximetry')">
+      <p>Pulse Oximetry</p>
+    </div>
+    <div class="cardContainer">
+      <img class="replicatedCard" src="3.Covid\9.PutOnTheFaceMask.png" alt="put on the face mask" onclick="replicateImage(this, 'put on the face mask')">
+      <p>Put on the Face Mask</p>
+    </div>
+    <div class="cardContainer">
+      <img class="replicatedCard" src="3.Covid\10.GirlWithTheMask.png" alt="girl with mask" onclick="replicateImage(this, 'girl with mask')">
+      <p>Girl with the Mask</p>
+    </div>
     <!-- Add more health images -->
   </div>
 
   <script>
     let addedImages = []; // Array to store added images
-
-    function replicateCard(card) {
-      const newCard = card.cloneNode(true);
-      newCard.classList.remove("replicatedCard");
-      newCard.style.width = "50px"; // Set the width of the cloned card
-      newCard.style.height = "75px"; // Set the height of the cloned card
-      
-      const headerContainer = document.getElementById("headerContainer");
-      headerContainer.appendChild(newCard);
-
-      // Store information about added image
-      /*addedImages.push({
-        alt: newCard.alt,
-        src: newCard.src
-      });*/
-    }
 
     function replicateImage(image, text) {
       const newImage = image.cloneNode(true);
@@ -110,7 +124,6 @@
 
     function playSpeech() {
       let concatenatedText = "";
-      console.log(concatenatedText);
 
       // Concatenate alt text of added images
       addedImages.forEach(image => {
@@ -120,13 +133,8 @@
       const synth = window.speechSynthesis;
       const utterance = new SpeechSynthesisUtterance(concatenatedText.trim());
 
-      
       // Play speech
-      console.log(concatenatedText);
-
       synth.speak(utterance);
-
-      // Initialize addedImages list to zero
     }
 
     function playButtonClicked() {
