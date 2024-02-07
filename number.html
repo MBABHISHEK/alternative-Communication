@@ -3,12 +3,15 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Card Replication</title>
+  <title>Numbers</title>
   <style>
     body {
       display: flex;
       flex-direction: column;
       align-items: center;
+      background-color:#9afcb3;
+      margin: 0;
+      padding: 0;
     }
     #header {
       background-color: #333;
@@ -19,68 +22,97 @@
       cursor: pointer;
       display: flex;
       justify-content: space-between;
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 1000;
+    }
+    #header .btn {
+      border: none;
+      background: none;
+      color: white;
+      cursor: pointer;
+      font-size: 20px;
+      margin: 0 10px;
+    }
+    #header h2 {
+      margin: 0;
     }
     #headerContainer {
-      display: flex; /* Added to display the replicated cards in a row */
+      margin-top: 60px; /* Adjust to give space below header */
+      width: 100%;
+      overflow-x: auto;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      padding-top: 20px; /* Adjust as needed */
     }
     #cardContainer {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
+      position:sticky;
+    }
+    .cardContainer {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
     .replicatedCard {
       margin: 10px;
-      width: 100px; /* Adjust card width as needed */
-      height: 150px; /* Adjust card height as needed */
-      border: 1px solid #000;
-      border-radius: 8px;
+      width: 200px; /* Adjust card width as needed */
+      height: 250px; /* Adjust card height as needed */
+      border-radius: 25px;
       cursor: pointer;
     }
-    .red { background-color: #ff5555; }
-    .green { background-color: #55ff55; }
-    .blue { background-color: #5555ff; }
     /* Add more colors and styles as needed */
   </style>
 </head>
 <body>
   <div id="header">
-    Header Content
-    <button onclick="playButtonClicked()">Play</button>
-    <div id="headerContainer"></div>
+    <button class="btn" onclick="playButtonClicked()">&#9654;</button>
+    <h2>Numbers</h2>
+    <button class="btn" onclick="deleteLastImage()">&#10006;</button>
   </div>
       
+  <div id="headerContainer">
+    <!-- Add image elements with different sources and paragraphs -->
+  </div>
   <div id="cardContainer">
-
-    <!-- Add 9 number elements with different sources -->
-    <img class="replicatedCard" src="number/1.png" alt="1" onclick="replicateImage(this, 'One')">
-    <img class="replicatedCard" src="number/2.png" alt="2" onclick="replicateImage(this, 'Two')">
-    <img class="replicatedCard" src="number/3.png" alt="3" onclick="replicateImage(this, 'Three')">
-    <img class="replicatedCard" src="number/4.png" alt="4" onclick="replicateImage(this, 'Four')">
-    <img class="replicatedCard" src="number/5.png" alt="5" onclick="replicateImage(this, 'Five')">
-    <img class="replicatedCard" src="number/6.png" alt="6" onclick="replicateImage(this, 'Six')">
-    <img class="replicatedCard" src="number/7.png" alt="7" onclick="replicateImage(this, 'Seven')">
-    <img class="replicatedCard" src="number/8.png" alt="8" onclick="replicateImage(this, 'Eight')">
-    <img class="replicatedCard" src="number/9.png" alt="9" onclick="replicateImage(this, 'Nine')">
+    <!-- Add image elements with different sources and paragraphs -->
+    <div class="cardContainer">
+      <img class="replicatedCard" src="10.Numbers/1.png" alt="1" onclick="replicateImage(this, 'One')">
+    </div>
+    <div class="cardContainer">
+      <img class="replicatedCard" src="10.Numbers/2.png" alt="2" onclick="replicateImage(this, 'Two')">
+    </div>
+    <div class="cardContainer">
+      <img class="replicatedCard" src="10.Numbers/3.png" alt="3" onclick="replicateImage(this, 'Three')">
+    </div>
+    <div class="cardContainer">
+      <img class="replicatedCard" src="10.Numbers/4.png" alt="4" onclick="replicateImage(this, 'Four')">
+    </div>
+    <div class="cardContainer">
+      <img class="replicatedCard" src="10.Numbers/5.png" alt="5" onclick="replicateImage(this, 'Five')">
+    </div>
+    <div class="cardContainer">
+      <img class="replicatedCard" src="10.Numbers/6.png" alt="6" onclick="replicateImage(this, 'Six')">
+    </div>
+    <div class="cardContainer">
+      <img class="replicatedCard" src="10.Numbers/7.png" alt="7" onclick="replicateImage(this, 'Seven')">
+    </div>
+    <div class="cardContainer">
+      <img class="replicatedCard" src="10.Numbers/8.png" alt="8" onclick="replicateImage(this, 'Eight')">
+    </div>
+    <div class="cardContainer">
+      <img class="replicatedCard" src="10.Numbers/9.png" alt="9" onclick="replicateImage(this, 'Nine')">
+    </div>
+    
+    
   </div>
 
   <script>
     let addedImages = []; // Array to store added images
-
-    function replicateCard(card) {
-      const newCard = card.cloneNode(true);
-      newCard.classList.remove("replicatedCard");
-      newCard.style.width = "50px"; // Set the width of the cloned card
-      newCard.style.height = "75px"; // Set the height of the cloned card
-      
-      const headerContainer = document.getElementById("headerContainer");
-      headerContainer.appendChild(newCard);
-
-      // Store information about added image
-      /*addedImages.push({
-        alt: newCard.alt,
-        src: newCard.src
-      });*/
-    }
 
     function replicateImage(image, text) {
       const newImage = image.cloneNode(true);
@@ -105,9 +137,17 @@
       synth.speak(utterance);
     }
 
+    function deleteLastImage() {
+      const headerContainer = document.getElementById("headerContainer");
+      const lastImage = headerContainer.lastChild;
+      if (lastImage) {
+        headerContainer.removeChild(lastImage);
+        addedImages.pop(); // Remove the last added image from the array
+      }
+    }
+
     function playSpeech() {
       let concatenatedText = "";
-      console.log(concatenatedText);
 
       // Concatenate alt text of added images
       addedImages.forEach(image => {
@@ -117,13 +157,8 @@
       const synth = window.speechSynthesis;
       const utterance = new SpeechSynthesisUtterance(concatenatedText.trim());
 
-      
       // Play speech
-      console.log(concatenatedText);
-
       synth.speak(utterance);
-
-      // Initialize addedImages list to zero
     }
 
     function playButtonClicked() {
