@@ -9,7 +9,9 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      background-color:#f5f062;
+      background-color:#9afcb3;
+      margin: 0;
+      padding: 0;
     }
     #header {
       background-color: #333;
@@ -20,106 +22,110 @@
       cursor: pointer;
       display: flex;
       justify-content: space-between;
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 1000;
+    }
+    #header .btn {
+      border: none;
+      background: none;
+      color: white;
+      cursor: pointer;
+      font-size: 20px;
+      margin: 0 10px;
+    }
+    #header h2 {
+      margin: 0;
     }
     #headerContainer {
-      display: flex; /* Added to display the replicated cards in a row */
+      margin-top: 60px; /* Adjust to give space below header */
+      width: 100%;
+      overflow-x: auto;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      padding-top: 20px; /* Adjust as needed */
     }
     #cardContainer {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
+      position:sticky;
     }
     .cardContainer {
       display: flex;
       flex-direction: column;
       align-items: center;
-      margin: 10px;
     }
     .replicatedCard {
+      margin: 10px;
       width: 200px; /* Adjust card width as needed */
       height: 250px; /* Adjust card height as needed */
       border-radius: 25px;
       cursor: pointer;
     }
-    .red { background-color: #ff5555; }
-    .green { background-color: #55ff55; }
-    .blue { background-color: #5555ff; }
     /* Add more colors and styles as needed */
   </style>
 </head>
 <body>
   <div id="header">
-    Header Content
-    <button onclick="playButtonClicked()">Play</button>
-    <div id="headerContainer"></div>
+    <button class="btn" onclick="playButtonClicked()">&#9654;</button>
+    <h2>Category</h2>
+    <button class="btn" onclick="deleteLastImage()">&#10006;</button>
   </div>
       
+  <div id="headerContainer">
+    <!-- Add image elements with different sources and paragraphs -->
+  </div>
   <div id="cardContainer">
-    <!-- Health Section -->
+    <!-- Add image elements with different sources and paragraphs -->
     <div class="cardContainer">
       <img class="replicatedCard" src="5.Category\1.Fruits.png" alt="Fruits" title="Fruits" onclick="replicateImage(this, 'Fruits')">
-      <p>Fruits</p>
+      <h3>Fruits</h3>
     </div>
     <div class="cardContainer">
       <img class="replicatedCard" src="5.Category\2.Colours.png" alt="Colours" title="Colours" onclick="replicateImage(this, 'Colours')">
-      <p>Colours</p>
+      <h3>Colours</h3>
     </div>
     <div class="cardContainer">
       <img class="replicatedCard" src="5.Category\3.Fish.png" alt="Fish" title="Fish" onclick="replicateImage(this, 'Fish')">
-      <p>Fish</p>
+      <h3>Fish</h3>
     </div>
     <div class="cardContainer">
       <img class="replicatedCard" src="5.Category\4.Clothes.png" alt="Clothes" title="Clothes" onclick="replicateImage(this, 'Clothes')">
-      <p>Clothes</p>
+      <h3>Clothes</h3>
     </div>
     <div class="cardContainer">
       <img class="replicatedCard" src="5.Category\5.Food.png" alt="Food" title="Food" onclick="replicateImage(this, 'Food')">
-      <p>Food</p>
+      <h3>Food</h3>
     </div>
     <div class="cardContainer">
       <img class="replicatedCard" src="5.Category\6.Vegetable.png" alt="Vegetable" title="Vegetable" onclick="replicateImage(this, 'Vegetable')">
-      <p>Vegetable</p>
+      <h3>Vegetable</h3>
     </div>
     <div class="cardContainer">
       <img class="replicatedCard" src="5.Category\7.Birds.png" alt="Birds" title="Birds" onclick="replicateImage(this, 'Birds')">
-      <p>Birds</p>
+      <h3>Birds</h3>
     </div>
     <div class="cardContainer">
       <img class="replicatedCard" src="5.Category\8.Pets.png" alt="Pets" title="Pets" onclick="replicateImage(this, 'Pets')">
-      <p>Pets</p>
+      <h3>Pets</h3>
     </div>
     <div class="cardContainer">
       <img class="replicatedCard" src="5.Category\9.Insects.png" alt="Insects" title="Insects" onclick="replicateImage(this,'Insects')">
-      <p>Insects</p>
+      <h3>Insects</h3>
     </div>
-    <!-- Add more health images -->
   </div>
 
   <script>
     let addedImages = []; // Array to store added images
-
-    function replicateCard(card) {
-      const newCard = card.cloneNode(true);
-      newCard.classList.remove("replicatedCard");
-      newCard.style.width = "50px"; // Set the width of the cloned card
-      newCard.style.height = "75px"; // Set the height of the cloned card
-      
-      const headerContainer = document.getElementById("headerContainer");
-      headerContainer.appendChild(newCard);
-
-      // Store information about added image
-      /*addedImages.push({
-        alt: newCard.alt,
-        src: newCard.src
-      });*/
-    }
 
     function replicateImage(image, text) {
       const newImage = image.cloneNode(true);
       newImage.classList.remove("replicatedCard");
       newImage.style.width = "50px"; // Set the width of the cloned image
       newImage.style.height = "75px"; // Set the height of the cloned image
-      newImage.setAttribute("title", text); // Set the title attribute
       
       const headerContainer = document.getElementById("headerContainer");
       headerContainer.appendChild(newImage);
@@ -138,9 +144,17 @@
       synth.speak(utterance);
     }
 
+    function deleteLastImage() {
+      const headerContainer = document.getElementById("headerContainer");
+      const lastImage = headerContainer.lastChild;
+      if (lastImage) {
+        headerContainer.removeChild(lastImage);
+        addedImages.pop(); // Remove the last added image from the array
+      }
+    }
+
     function playSpeech() {
       let concatenatedText = "";
-      console.log(concatenatedText);
 
       // Concatenate alt text of added images
       addedImages.forEach(image => {
@@ -150,13 +164,8 @@
       const synth = window.speechSynthesis;
       const utterance = new SpeechSynthesisUtterance(concatenatedText.trim());
 
-      
       // Play speech
-      console.log(concatenatedText);
-
       synth.speak(utterance);
-
-      // Initialize addedImages list to zero
     }
 
     function playButtonClicked() {
