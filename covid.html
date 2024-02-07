@@ -3,13 +3,15 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Card Replication</title>
+  <title>Covid</title>
   <style>
     body {
       display: flex;
       flex-direction: column;
       align-items: center;
-      background-color:#f5f062;
+      background-color:#9afcb3;
+      margin: 0;
+      padding: 0;
     }
     #header {
       background-color: #333;
@@ -20,85 +22,106 @@
       cursor: pointer;
       display: flex;
       justify-content: space-between;
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 1000;
+    }
+    #header .btn {
+      border: none;
+      background: none;
+      color: white;
+      cursor: pointer;
+      font-size: 20px;
+      margin: 0 10px;
+    }
+    #header h2 {
+      margin: 0;
     }
     #headerContainer {
-      display: flex; /* Added to display the replicated cards in a row */
-    }
-   #cardContainer {
+      margin-top: 60px; /* Adjust to give space below header */
+      width: 100%;
+      overflow-x: auto;
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
+      padding-top: 20px; /* Adjust as needed */
+    }
+    #cardContainer {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      position:sticky;
     }
     .cardContainer {
       display: flex;
       flex-direction: column;
       align-items: center;
-      margin: 10px;
     }
     .replicatedCard {
       margin: 10px;
       width: 200px; /* Adjust card width as needed */
       height: 250px; /* Adjust card height as needed */
-      /*border: 1px solid #000;*/
       border-radius: 25px;
       cursor: pointer;
     }
-    .red { background-color: #ff5555; }
-    .green { background-color: #55ff55; }
-    .blue { background-color: #5555ff; }
     /* Add more colors and styles as needed */
   </style>
 </head>
 <body>
   <div id="header">
-    Header Content
-    <button onclick="playButtonClicked()">Play</button>
-    <div id="headerContainer"></div>
+    <button class="btn" onclick="playButtonClicked()">&#9654;</button>
+    <h2>Covid</h2>
+    <button class="btn" onclick="deleteLastImage()">&#10006;</button>
   </div>
       
+  <div id="headerContainer">
+    <!-- Add image elements with different sources and paragraphs -->
+  </div>
   <div id="cardContainer">
-    <!-- Health Section -->
+    <!-- Add image elements with different sources and paragraphs -->
     <div class="cardContainer">
       <img class="replicatedCard" src="3.Covid\1.Virus.png" alt="virus" onclick="replicateImage(this, 'virus')">
-      <p>Virus</p>
+      <h3>Virus</h3>
     </div>
     <div class="cardContainer">
       <img class="replicatedCard" src="3.Covid\2.Epidemic.png" alt="epidemic" onclick="replicateImage(this, 'epidemic')">
-      <p>Epidemic</p>
+      <h3>Epidemic</h3>
     </div>
     <div class="cardContainer">
       <img class="replicatedCard" src="3.Covid\3.Nurse.png" alt="nurse" onclick="replicateImage(this, 'nurse')">
-      <p>Nurse</p>
+      <h3>Nurse</h3>
     </div>
     <div class="cardContainer">
       <img class="replicatedCard" src="3.Covid\4.ElderlyManWithMask.png" alt="elderly man with mask" onclick="replicateImage(this, 'elderly man with mask')">
-      <p>Elderly Man with Mask</p>
+      <h3>Elderly Man with Mask</h3>
     </div>
     <div class="cardContainer">
       <img class="replicatedCard" src="3.Covid\5.Vaccinate.png" alt="vaccinate" onclick="replicateImage(this, 'vaccinate')">
-      <p>Vaccinate</p>
+      <h3>Vaccinate</h3>
     </div>
     <div class="cardContainer">
       <img class="replicatedCard" src="3.Covid\6.ElderlyWomanWithMask.png" alt="elderly woman with mask" onclick="replicateImage(this, 'elderly woman with mask')">
-      <p>Elderly Woman with Mask</p>
+      <h3>Elderly Woman with Mask</h3>
     </div>
     <div class="cardContainer">
       <img class="replicatedCard" src="3.Covid\7.WalkInClinic.png" alt="walk in clinic" onclick="replicateImage(this, 'walk in clinic')">
-      <p>Walk-in Clinic</p>
+      <h3>Walk-in Clinic</h3>
     </div>
     <div class="cardContainer">
       <img class="replicatedCard" src="3.Covid\8.PulseOxiMetry.png" alt="pulse oximetry" onclick="replicateImage(this, 'pulse oximetry')">
-      <p>Pulse Oximetry</p>
+      <h3>Pulse Oximetry</h3>
     </div>
     <div class="cardContainer">
       <img class="replicatedCard" src="3.Covid\9.PutOnTheFaceMask.png" alt="put on the face mask" onclick="replicateImage(this, 'put on the face mask')">
-      <p>Put on the Face Mask</p>
+      <h3>Put on the Face Mask</h3>
     </div>
     <div class="cardContainer">
       <img class="replicatedCard" src="3.Covid\10.GirlWithTheMask.png" alt="girl with mask" onclick="replicateImage(this, 'girl with mask')">
-      <p>Girl with the Mask</p>
+      <h3>Girl with the Mask</h3>
     </div>
     <!-- Add more health images -->
+  </div>
   </div>
 
   <script>
@@ -125,6 +148,15 @@
 
       // Play speech
       synth.speak(utterance);
+    }
+
+    function deleteLastImage() {
+      const headerContainer = document.getElementById("headerContainer");
+      const lastImage = headerContainer.lastChild;
+      if (lastImage) {
+        headerContainer.removeChild(lastImage);
+        addedImages.pop(); // Remove the last added image from the array
+      }
     }
 
     function playSpeech() {
