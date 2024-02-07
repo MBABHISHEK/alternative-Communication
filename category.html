@@ -29,11 +29,15 @@
       flex-wrap: wrap;
       justify-content: center;
     }
-    .replicatedCard {
+    .cardContainer {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
       margin: 10px;
+    }
+    .replicatedCard {
       width: 200px; /* Adjust card width as needed */
       height: 250px; /* Adjust card height as needed */
-      /*border: 1px solid #000;*/
       border-radius: 25px;
       cursor: pointer;
     }
@@ -52,15 +56,42 @@
       
   <div id="cardContainer">
     <!-- Health Section -->
-    <img class="replicatedCard" src="5.Category\1.Fruits.png" alt="Fruits" onclick="replicateImage(this, 'Fruits')">
-    <img class="replicatedCard" src="5.Category\2.Colours.png" alt="Colours" onclick="replicateImage(this, 'Colours')">
-    <img class="replicatedCard" src="5.Category\3.Fish.png" alt="Fish" onclick="replicateImage(this, 'Fish')">
-    <img class="replicatedCard" src="5.Category\4.Clothes.png" alt="Clothes" onclick="replicateImage(this, 'Clothes')">
-    <img class="replicatedCard" src="5.Category\5.Food.png" alt="Food" onclick="replicateImage(this, 'Food')">
-    <img class="replicatedCard" src="5.Category\6.Vegetable.png" alt="Vegetable" onclick="replicateImage(this, 'Vegetable')">
-    <img class="replicatedCard" src="5.Category\7.Birds.png" alt="Birds" onclick="replicateImage(this, 'Birds')">
-    <img class="replicatedCard" src="5.Category\8.Pets.png" alt="Pets" onclick="replicateImage(this, 'Pets')">
-    <img class="replicatedCard" src="5.Category\9.Insects.png" alt="Insects" onclick="replicateImage(this,'Insects')">
+    <div class="cardContainer">
+      <img class="replicatedCard" src="5.Category\1.Fruits.png" alt="Fruits" title="Fruits" onclick="replicateImage(this, 'Fruits')">
+      <p>Fruits</p>
+    </div>
+    <div class="cardContainer">
+      <img class="replicatedCard" src="5.Category\2.Colours.png" alt="Colours" title="Colours" onclick="replicateImage(this, 'Colours')">
+      <p>Colours</p>
+    </div>
+    <div class="cardContainer">
+      <img class="replicatedCard" src="5.Category\3.Fish.png" alt="Fish" title="Fish" onclick="replicateImage(this, 'Fish')">
+      <p>Fish</p>
+    </div>
+    <div class="cardContainer">
+      <img class="replicatedCard" src="5.Category\4.Clothes.png" alt="Clothes" title="Clothes" onclick="replicateImage(this, 'Clothes')">
+      <p>Clothes</p>
+    </div>
+    <div class="cardContainer">
+      <img class="replicatedCard" src="5.Category\5.Food.png" alt="Food" title="Food" onclick="replicateImage(this, 'Food')">
+      <p>Food</p>
+    </div>
+    <div class="cardContainer">
+      <img class="replicatedCard" src="5.Category\6.Vegetable.png" alt="Vegetable" title="Vegetable" onclick="replicateImage(this, 'Vegetable')">
+      <p>Vegetable</p>
+    </div>
+    <div class="cardContainer">
+      <img class="replicatedCard" src="5.Category\7.Birds.png" alt="Birds" title="Birds" onclick="replicateImage(this, 'Birds')">
+      <p>Birds</p>
+    </div>
+    <div class="cardContainer">
+      <img class="replicatedCard" src="5.Category\8.Pets.png" alt="Pets" title="Pets" onclick="replicateImage(this, 'Pets')">
+      <p>Pets</p>
+    </div>
+    <div class="cardContainer">
+      <img class="replicatedCard" src="5.Category\9.Insects.png" alt="Insects" title="Insects" onclick="replicateImage(this,'Insects')">
+      <p>Insects</p>
+    </div>
     <!-- Add more health images -->
   </div>
 
@@ -88,6 +119,7 @@
       newImage.classList.remove("replicatedCard");
       newImage.style.width = "50px"; // Set the width of the cloned image
       newImage.style.height = "75px"; // Set the height of the cloned image
+      newImage.setAttribute("title", text); // Set the title attribute
       
       const headerContainer = document.getElementById("headerContainer");
       headerContainer.appendChild(newImage);
