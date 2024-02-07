@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Card Replication</title>
+  <title>Category</title>
   <style>
     body {
       display: flex;
@@ -38,15 +38,18 @@
     #header h2 {
       margin: 0;
     }
+
     #headerContainer {
-      margin-top: 60px; /* Adjust to give space below header */
-      width: 100%;
-      overflow-x: auto;
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      padding-top: 20px; /* Adjust as needed */
-    }
+  margin-top: 60px; /* Adjust to give space below header */
+  width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden; /* Hide vertical scrollbar */
+  white-space: nowrap; /* Prevent line breaks */
+  display: flex;
+  align-items: center; /* Center items vertically */
+  padding: 10px 0; /* Adjust padding as needed */
+}
+
     #cardContainer {
       display: flex;
       flex-wrap: wrap;
@@ -71,7 +74,7 @@
 <body>
   <div id="header">
     <button class="btn" onclick="playButtonClicked()">&#9654;</button>
-    <h2>Technology</h2>
+    <h2>Category</h2>
     <button class="btn" onclick="deleteLastImage()">&#10006;</button>
   </div>
       
@@ -81,40 +84,40 @@
   <div id="cardContainer">
     <!-- Add image elements with different sources and paragraphs -->
     <div class="cardContainer">
-      <img class="replicatedCard" src="1.Technology\1.MobileDevice.png" alt="Mobile Device" onclick="replicateImage(this, 'Mobile Device')">
-      <h3>Mobile Device</h3>
+      <img class="replicatedCard" src="5.Category\1.Fruits.png" alt="Fruits" title="Fruits" onclick="replicateImage(this, 'Fruits')">
+      <h3>Fruits</h3>
     </div>
     <div class="cardContainer">
-      <img class="replicatedCard" src="1.Technology\2.Email.png" alt="email" onclick="replicateImage(this, 'email')">
-      <p>Email</p>
+      <img class="replicatedCard" src="5.Category\2.Colours.png" alt="Colours" title="Colours" onclick="replicateImage(this, 'Colours')">
+      <h3>Colours</h3>
     </div>
     <div class="cardContainer">
-      <img class="replicatedCard" src="1.Technology\3.EmergencyPhone.png" alt="emergency phone" onclick="replicateImage(this, 'emergency phone')">
-      <p>Emergency Phone</p>
+      <img class="replicatedCard" src="5.Category\3.Fish.png" alt="Fish" title="Fish" onclick="replicateImage(this, 'Fish')">
+      <h3>Fish</h3>
     </div>
     <div class="cardContainer">
-      <img class="replicatedCard" src="1.Technology\4.Post.png" alt="post" onclick="replicateImage(this, 'post')">
-      <p>Post</p>
+      <img class="replicatedCard" src="5.Category\4.Clothes.png" alt="Clothes" title="Clothes" onclick="replicateImage(this, 'Clothes')">
+      <h3>Clothes</h3>
     </div>
     <div class="cardContainer">
-      <img class="replicatedCard" src="1.Technology\5.InformationTechnology.png" alt="Information technology" onclick="replicateImage(this, 'Information technology')">
-      <p>Information Technology</p>
+      <img class="replicatedCard" src="5.Category\5.Food.png" alt="Food" title="Food" onclick="replicateImage(this, 'Food')">
+      <h3>Food</h3>
     </div>
     <div class="cardContainer">
-      <img class="replicatedCard" src="1.Technology\6.ComputerEngineer.png" alt="computer engineer" onclick="replicateImage(this, 'computer engineer')">
-      <p>Computer Engineer</p>
+      <img class="replicatedCard" src="5.Category\6.Vegetable.png" alt="Vegetable" title="Vegetable" onclick="replicateImage(this, 'Vegetable')">
+      <h3>Vegetable</h3>
     </div>
     <div class="cardContainer">
-      <img class="replicatedCard" src="1.Technology\7.MobilePhone.png" alt="mobile phone" onclick="replicateImage(this, 'mobile phone')">
-      <p>Mobile Phone</p>
+      <img class="replicatedCard" src="5.Category\7.Birds.png" alt="Birds" title="Birds" onclick="replicateImage(this, 'Birds')">
+      <h3>Birds</h3>
     </div>
     <div class="cardContainer">
-      <img class="replicatedCard" src="1.Technology\8.MobilePhoneBag.png" alt="mobilephone bag" onclick="replicateImage(this, 'Mobilephone bag')">
-      <p>Mobilephone Bag</p>
+      <img class="replicatedCard" src="5.Category\8.Pets.png" alt="Pets" title="Pets" onclick="replicateImage(this, 'Pets')">
+      <h3>Pets</h3>
     </div>
     <div class="cardContainer">
-      <img class="replicatedCard" src="1.Technology\9.SpeakOnThePhone.png" alt="Speak on the phone" onclick="replicateImage(this, 'Speak on the phone')">
-      <p>Speak on the Phone</p>
+      <img class="replicatedCard" src="5.Category\9.Insects.png" alt="Insects" title="Insects" onclick="replicateImage(this,'Insects')">
+      <h3>Insects</h3>
     </div>
   </div>
 
