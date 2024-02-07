@@ -10,6 +10,8 @@
       flex-direction: column;
       align-items: center;
       background-color:#9afcb3;
+      margin: 0;
+      padding: 0;
     }
     #header {
       background-color: #333;
@@ -20,44 +22,64 @@
       cursor: pointer;
       display: flex;
       justify-content: space-between;
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 1000;
+    }
+    #header .btn {
+      border: none;
+      background: none;
+      color: white;
+      cursor: pointer;
+      font-size: 20px;
+      margin: 0 10px;
+    }
+    #header h2 {
+      margin: 0;
     }
     #headerContainer {
-      display: flex; /* Added to display the replicated cards in a row */
+      margin-top: 60px; /* Adjust to give space below header */
+      width: 100%;
+      overflow-x: auto;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      padding-top: 20px; /* Adjust as needed */
     }
     #cardContainer {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
-    }
-    .replicatedCard {
-      margin: 10px;
-      width: 200px; /* Adjust card width as needed */
-      height: 250px; /* Adjust card height as needed */
-      /*border: 1px solid #000;*/
-      border-radius: 25px;
-      cursor: pointer;
+      position:sticky;
     }
     .cardContainer {
       display: flex;
       flex-direction: column;
       align-items: center;
     }
-    h3 {
-      margin-top: 5px;
-      font-size: 14px;
-      color: #333;
+    .replicatedCard {
+      margin: 10px;
+      width: 200px; /* Adjust card width as needed */
+      height: 250px; /* Adjust card height as needed */
+      border-radius: 25px;
+      cursor: pointer;
     }
+    /* Add more colors and styles as needed */
   </style>
 </head>
 <body>
   <div id="header">
-    Header Content
-    <button onclick="playButtonClicked()">Play</button>
-    <div id="headerContainer"></div>
+    <button class="btn" onclick="playButtonClicked()">&#9654;</button>
+    <h2>General</h2>
+    <button class="btn" onclick="deleteLastImage()">&#10006;</button>
   </div>
       
+  <div id="headerContainer">
+    <!-- Add image elements with different sources and paragraphs -->
+  </div>
   <div id="cardContainer">
-    <!-- Add 9 number elements with different sources -->
+    <!-- Add image elements with different sources and paragraphs -->
     <div class="cardContainer">
       <img class="replicatedCard" src="6.General\1.IAmHungry.png" alt="IAmHungry" onclick="replicateImage(this, 'I Am Hungry')">
       <h3>I Am Hungry</h3>
@@ -94,6 +116,7 @@
       <img class="replicatedCard" src="6.General\9.GoToSleep.png" alt="GoToSleep" onclick="replicateImage(this, 'Go To Sleep')">
       <h3>Go To Sleep</h3>
     </div>
+    <!-- Add more health images -->
   </div>
 
   <script>
@@ -120,6 +143,15 @@
 
       // Play speech
       synth.speak(utterance);
+    }
+
+    function deleteLastImage() {
+      const headerContainer = document.getElementById("headerContainer");
+      const lastImage = headerContainer.lastChild;
+      if (lastImage) {
+        headerContainer.removeChild(lastImage);
+        addedImages.pop(); // Remove the last added image from the array
+      }
     }
 
     function playSpeech() {
