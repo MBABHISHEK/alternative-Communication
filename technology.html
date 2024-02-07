@@ -29,12 +29,16 @@
       flex-wrap: wrap;
       justify-content: center;
     }
+    .cardContainer {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
     .replicatedCard {
       margin: 10px;
-      width: 100px; /* Adjust card width as needed */
-      height: 150px; /* Adjust card height as needed */
-      /*border: 1px solid #000;*/
-      border-radius: 15px;
+      width: 200px; /* Adjust card width as needed */
+      height: 250px; /* Adjust card height as needed */
+      border-radius: 25px;
       cursor: pointer;
     }
     .red { background-color: #ff5555; }
@@ -51,36 +55,47 @@
   </div>
       
   <div id="cardContainer">
-    <!-- Add 9 image elements with different sources -->
-    <img class="replicatedCard" src="1.Technology\1.MobileDevice.png" alt="Mobile Device" onclick="replicateImage(this, 'Mobile Device')">
-    <img class="replicatedCard" src="1.Technology\2.Email.png" alt="email" onclick="replicateImage(this, 'email')">
-    <img class="replicatedCard" src="1.Technology\3.EmergencyPhone.png" alt="emergency phone" onclick="replicateImage(this, 'emergency phone')">
-    <img class="replicatedCard" src="1.Technology\4.Post.png" alt="post" onclick="replicateImage(this, 'post')">
-    <img class="replicatedCard" src="1.Technology\5.InformationTechnology.png" alt="Information technology" onclick="replicateImage(this, 'Information technology')">
-    <img class="replicatedCard" src="1.Technology\6.ComputerEngineer.png" alt="computer engineer" onclick="replicateImage(this, 'computer engineer')">
-    <img class="replicatedCard" src="1.Technology\7.MobilePhone.png" alt="mobile phone" onclick="replicateImage(this, 'mobile phone')">
-    <img class="replicatedCard" src="1.Technology\8.MobilePhoneBag.png" alt="mobilephone bag" onclick="replicateImage(this, 'Mobilephone bag')">
-    <img class="replicatedCard" src="1.Technology\9.SpeakOnThePhone.png" alt="Speak on the phone" onclick="replicateImage(this, 'Speak on the phone')">
+    <!-- Add image elements with different sources and paragraphs -->
+    <div class="cardContainer">
+      <img class="replicatedCard" src="1.Technology\1.MobileDevice.png" alt="Mobile Device" onclick="replicateImage(this, 'Mobile Device')">
+      <p>Mobile Device</p>
+    </div>
+    <div class="cardContainer">
+      <img class="replicatedCard" src="1.Technology\2.Email.png" alt="email" onclick="replicateImage(this, 'email')">
+      <p>Email</p>
+    </div>
+    <div class="cardContainer">
+      <img class="replicatedCard" src="1.Technology\3.EmergencyPhone.png" alt="emergency phone" onclick="replicateImage(this, 'emergency phone')">
+      <p>Emergency Phone</p>
+    </div>
+    <div class="cardContainer">
+      <img class="replicatedCard" src="1.Technology\4.Post.png" alt="post" onclick="replicateImage(this, 'post')">
+      <p>Post</p>
+    </div>
+    <div class="cardContainer">
+      <img class="replicatedCard" src="1.Technology\5.InformationTechnology.png" alt="Information technology" onclick="replicateImage(this, 'Information technology')">
+      <p>Information Technology</p>
+    </div>
+    <div class="cardContainer">
+      <img class="replicatedCard" src="1.Technology\6.ComputerEngineer.png" alt="computer engineer" onclick="replicateImage(this, 'computer engineer')">
+      <p>Computer Engineer</p>
+    </div>
+    <div class="cardContainer">
+      <img class="replicatedCard" src="1.Technology\7.MobilePhone.png" alt="mobile phone" onclick="replicateImage(this, 'mobile phone')">
+      <p>Mobile Phone</p>
+    </div>
+    <div class="cardContainer">
+      <img class="replicatedCard" src="1.Technology\8.MobilePhoneBag.png" alt="mobilephone bag" onclick="replicateImage(this, 'Mobilephone bag')">
+      <p>Mobilephone Bag</p>
+    </div>
+    <div class="cardContainer">
+      <img class="replicatedCard" src="1.Technology\9.SpeakOnThePhone.png" alt="Speak on the phone" onclick="replicateImage(this, 'Speak on the phone')">
+      <p>Speak on the Phone</p>
+    </div>
   </div>
 
   <script>
     let addedImages = []; // Array to store added images
-
-    function replicateCard(card) {
-      const newCard = card.cloneNode(true);
-      newCard.classList.remove("replicatedCard");
-      newCard.style.width = "50px"; // Set the width of the cloned card
-      newCard.style.height = "75px"; // Set the height of the cloned card
-      
-      const headerContainer = document.getElementById("headerContainer");
-      headerContainer.appendChild(newCard);
-
-      // Store information about added image
-      /*addedImages.push({
-        alt: newCard.alt,
-        src: newCard.src
-      });*/
-    }
 
     function replicateImage(image, text) {
       const newImage = image.cloneNode(true);
@@ -107,7 +122,6 @@
 
     function playSpeech() {
       let concatenatedText = "";
-      console.log(concatenatedText);
 
       // Concatenate alt text of added images
       addedImages.forEach(image => {
@@ -117,13 +131,8 @@
       const synth = window.speechSynthesis;
       const utterance = new SpeechSynthesisUtterance(concatenatedText.trim());
 
-      
       // Play speech
-      console.log(concatenatedText);
-
       synth.speak(utterance);
-
-      // Initialize addedImages list to zero
     }
 
     function playButtonClicked() {
