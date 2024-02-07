@@ -3,13 +3,15 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Colors </title>
+  <title>colors</title>
   <style>
     body {
       display: flex;
       flex-direction: column;
       align-items: center;
       background-color:#f5f062;
+      margin: 0;
+      padding: 0;
     }
     #header {
       background-color: #333;
@@ -20,93 +22,98 @@
       cursor: pointer;
       display: flex;
       justify-content: space-between;
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 1000;
+    }
+    #header .btn {
+      border: none;
+      background: none;
+      color: white;
+      cursor: pointer;
+      font-size: 20px;
+      margin: 0 10px;
+    }
+    #header h2 {
+      margin: 0;
     }
     #headerContainer {
-      display: flex; /* Added to display the replicated cards in a row */
+      margin-top: 60px; /* Adjust to give space below header */
+      width: 100%;
+      overflow-x: auto;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      padding-top: 20px; /* Adjust as needed */
     }
     #cardContainer {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
+      position:sticky;
     }
     .cardContainer {
       display: flex;
       flex-direction: column;
       align-items: center;
-      margin: 10px;
     }
     .replicatedCard {
+      margin: 10px;
       width: 200px; /* Adjust card width as needed */
       height: 250px; /* Adjust card height as needed */
-      border-radius: 25px;/* Adjust card height as needed */
-      /*border: 1px solid #000;*/
       border-radius: 25px;
       cursor: pointer;
     }
-    .red { background-color: #ff5555; }
-    .green { background-color: #55ff55; }
-    .blue { background-color: #5555ff; }
     /* Add more colors and styles as needed */
   </style>
 </head>
 <body>
   <div id="header">
-    Header Content
-    <button onclick="playButtonClicked()">Play</button>
-    <div id="headerContainer"></div>
+    <button class="btn" onclick="playButtonClicked()">&#9654;</button>
+    <h2>colors</h2>
+    <button class="btn" onclick="deleteLastImage()">&#10006;</button>
   </div>
       
+  <div id="headerContainer">
+    <!-- Add image elements with different sources and paragraphs -->
+  </div>
   <div id="cardContainer">
-
-    <!-- Add 9 number elements with different sources -->
+    <!-- Add image elements with different sources and paragraphs -->
     <div class="cardContainer">
       <img class="replicatedCard" src="11.colours\1.Violet.png" alt="Violet" title="Violet" onclick="replicateImage(this, 'Violet')">
-      <p>Violet</p>
+      <h3>Violet</h3>
     </div>
     <div class="cardContainer">
       <img class="replicatedCard" src="11.colours\2.Indigo.png" alt="Indigo" title="Indigo" onclick="replicateImage(this, 'Indigo')">
-      <p>Indigo</p>
+      <h3>Indigo</h3>
     </div>
     <div class="cardContainer">
       <img class="replicatedCard" src="11.colours\3.Blue.png" alt="Blue" title="Blue" onclick="replicateImage(this, 'Blue')">
-      <p>Blue</p>
+      <h3>Blue</h3>
     </div>
     <div class="cardContainer">
       <img class="replicatedCard" src="11.colours\4.Green.png" alt="Green" title="Green" onclick="replicateImage(this, 'Green')">
-      <p>Green</p>
+      <h3>Green</h3>
     </div>
     <div class="cardContainer">
       <img class="replicatedCard" src="11.colours\5.Yellow.png" alt="Yellow" title="Yellow" onclick="replicateImage(this, 'Yellow')">
-      <p>Yellow</p>
+      <h3>Yellow</h3>
     </div>
     <div class="cardContainer">
       <img class="replicatedCard" src="11.colours\6.Orange.png" alt="Orange" title="Orange" onclick="replicateImage(this, 'Orange')">
-      <p>Orange</p>
+      <h3>Orange</h3>
     </div>
     <div class="cardContainer">
       <img class="replicatedCard" src="11.colours\7.Red.png" alt="Red" title="Red" onclick="replicateImage(this, 'Red')">
-      <p>Red</p>
+      <h3>Red</h3>
     </div>
+    
+    
   </div>
 
   <script>
     let addedImages = []; // Array to store added images
-
-    function replicateCard(card) {
-      const newCard = card.cloneNode(true);
-      newCard.classList.remove("replicatedCard");
-      newCard.style.width = "50px"; // Set the width of the cloned card
-      newCard.style.height = "75px"; // Set the height of the cloned card
-      
-      const headerContainer = document.getElementById("headerContainer");
-      headerContainer.appendChild(newCard);
-
-      // Store information about added image
-      /*addedImages.push({
-        alt: newCard.alt,
-        src: newCard.src
-      });*/
-    }
 
     function replicateImage(image, text) {
       const newImage = image.cloneNode(true);
@@ -131,9 +138,17 @@
       synth.speak(utterance);
     }
 
+    function deleteLastImage() {
+      const headerContainer = document.getElementById("headerContainer");
+      const lastImage = headerContainer.lastChild;
+      if (lastImage) {
+        headerContainer.removeChild(lastImage);
+        addedImages.pop(); // Remove the last added image from the array
+      }
+    }
+
     function playSpeech() {
       let concatenatedText = "";
-      console.log(concatenatedText);
 
       // Concatenate alt text of added images
       addedImages.forEach(image => {
@@ -143,13 +158,8 @@
       const synth = window.speechSynthesis;
       const utterance = new SpeechSynthesisUtterance(concatenatedText.trim());
 
-      
       // Play speech
-      console.log(concatenatedText);
-
       synth.speak(utterance);
-
-      // Initialize addedImages list to zero
     }
 
     function playButtonClicked() {
