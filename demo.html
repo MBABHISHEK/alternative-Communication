@@ -9,7 +9,7 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      background-color:#9afcb3;
+      background-color: #9afcb3;
       margin: 0;
       padding: 0;
     }
@@ -40,21 +40,25 @@
     }
 
     #headerContainer {
-  margin-top: 60px; /* Adjust to give space below header */
-  width: 100%;
-  overflow-x: auto;
-  overflow-y: hidden; /* Hide vertical scrollbar */
-  white-space: nowrap; /* Prevent line breaks */
-  display: flex;
-  align-items: center; /* Center items vertically */
-  padding: 10px 0; /* Adjust padding as needed */
-      position:sticky;
-}
+      position: fixed;
+      top: 60px;
+      left: 0;
+      width: calc(100% - 20px);
+      overflow-x: auto;
+      overflow-y: hidden;
+      white-space: nowrap;
+      display: flex;
+      align-items: center;
+      padding: 10px 0;
+      z-index: 999;
+      background-color: #fff; /* Set background color to white */
+    }
 
     #cardContainer {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
+      margin-top: 160px; /* Adjust to give space below header container */
     }
     .cardContainer {
       display: flex;
@@ -63,12 +67,11 @@
     }
     .replicatedCard {
       margin: 10px;
-      width: 200px; /* Adjust card width as needed */
-      height: 250px; /* Adjust card height as needed */
+      width: 200px;
+      height: 250px;
       border-radius: 25px;
       cursor: pointer;
     }
-    /* Add more colors and styles as needed */
   </style>
 </head>
 <body>
@@ -77,7 +80,7 @@
     <h2>Category</h2>
     <button class="btn" onclick="deleteLastImage()">&#10006;</button>
   </div>
-      
+
   <div id="headerContainer">
     <!-- Add image elements with different sources and paragraphs -->
   </div>
@@ -116,7 +119,7 @@
       <h3>Pets</h3>
     </div>
     <div class="cardContainer">
-      <img class="replicatedCard" src="5.Category\9.Insects.png" alt="Insects" title="Insects" onclick="replicateImage(this,'Insects')">
+      <img class="replicatedCard" src="5.Category\9.Insects.png" alt="Insects" title="Insects" onclick="replicateImage(this, 'Insects')">
       <h3>Insects</h3>
     </div>
   </div>
@@ -129,7 +132,7 @@
       newImage.classList.remove("replicatedCard");
       newImage.style.width = "50px"; // Set the width of the cloned image
       newImage.style.height = "75px"; // Set the height of the cloned image
-      
+
       const headerContainer = document.getElementById("headerContainer");
       headerContainer.appendChild(newImage);
 
