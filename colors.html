@@ -29,8 +29,13 @@
       flex-wrap: wrap;
       justify-content: center;
     }
-    .replicatedCard {
+    .cardContainer {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
       margin: 10px;
+    }
+    .replicatedCard {
       width: 200px; /* Adjust card width as needed */
       height: 250px; /* Adjust card height as needed */
       border-radius: 25px;/* Adjust card height as needed */
@@ -54,14 +59,34 @@
   <div id="cardContainer">
 
     <!-- Add 9 number elements with different sources -->
-    <img class="replicatedCard" src="11.colours\1.Violet.png" alt="Violet" onclick="replicateImage(this, 'Violet')">
-    <img class="replicatedCard" src="11.colours\2.Indigo.png" alt="Indigo" onclick="replicateImage(this, 'Indigo')">
-
-    <img class="replicatedCard" src="11.colours\3.Blue.png" alt="Blue" onclick="replicateImage(this, 'Blue')">
-    <img class="replicatedCard" src="11.colours\4.Green.png" alt="Green"onclick="replicateImage(this, 'Green')">
-    <img class="replicatedCard" src="11.colours\5.Yellow.png" alt="Yellow" onclick="replicateImage(this, 'Yellow')">
-    <img class="replicatedCard" src="11.colours\6.Orange.png" alt="Orange" onclick="replicateImage(this, 'Orange')">
-    <img class="replicatedCard" src="11.colours\7.Red.png" alt="Red" onclick="replicateImage(this, 'Red')">
+    <div class="cardContainer">
+      <img class="replicatedCard" src="11.colours\1.Violet.png" alt="Violet" title="Violet" onclick="replicateImage(this, 'Violet')">
+      <p>Violet</p>
+    </div>
+    <div class="cardContainer">
+      <img class="replicatedCard" src="11.colours\2.Indigo.png" alt="Indigo" title="Indigo" onclick="replicateImage(this, 'Indigo')">
+      <p>Indigo</p>
+    </div>
+    <div class="cardContainer">
+      <img class="replicatedCard" src="11.colours\3.Blue.png" alt="Blue" title="Blue" onclick="replicateImage(this, 'Blue')">
+      <p>Blue</p>
+    </div>
+    <div class="cardContainer">
+      <img class="replicatedCard" src="11.colours\4.Green.png" alt="Green" title="Green" onclick="replicateImage(this, 'Green')">
+      <p>Green</p>
+    </div>
+    <div class="cardContainer">
+      <img class="replicatedCard" src="11.colours\5.Yellow.png" alt="Yellow" title="Yellow" onclick="replicateImage(this, 'Yellow')">
+      <p>Yellow</p>
+    </div>
+    <div class="cardContainer">
+      <img class="replicatedCard" src="11.colours\6.Orange.png" alt="Orange" title="Orange" onclick="replicateImage(this, 'Orange')">
+      <p>Orange</p>
+    </div>
+    <div class="cardContainer">
+      <img class="replicatedCard" src="11.colours\7.Red.png" alt="Red" title="Red" onclick="replicateImage(this, 'Red')">
+      <p>Red</p>
+    </div>
   </div>
 
   <script>
