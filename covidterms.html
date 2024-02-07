@@ -9,6 +9,7 @@
       display: flex;
       flex-direction: column;
       align-items: center;
+      background-color:#9afcb3;
     }
     #header {
       background-color: #333;
@@ -33,7 +34,7 @@
       width: 200px; /* Adjust card width as needed */
       height: 250px; /* Adjust card height as needed */
       /*border: 1px solid #000;*/
-      border-radius: 8px;
+      border-radius: 25px;
       cursor: pointer;
     }
     .red { background-color: #ff5555; }
@@ -51,35 +52,43 @@
       
   <div id="cardContainer">
     <!-- Health Section -->
-    <img class="replicatedCard" src="4.CovidTerms\1.Cough.png" alt="Cough" onclick="replicateImage(this, 'Cough')">
-    <img class="replicatedCard" src="4.CovidTerms\2.ChestPain.png" alt="Chest Pain" onclick="replicateImage(this, 'Chest Pain')">
-    <img class="replicatedCard" src="4.CovidTerms\3.Inhale.png" alt="Inhale" onclick="replicateImage(this, 'Inhale')">
-    <img class="replicatedCard" src="4.CovidTerms\4.Breathe.png" alt="Breathe" onclick="replicateImage(this, 'Breathe')">
-    <img class="replicatedCard" src="4.CovidTerms\5.Disinfect.png" alt="Disinfect" onclick="replicateImage(this, 'Disinfect')">
-    <img class="replicatedCard" src="4.CovidTerms\6.HandSanitizer.png" alt="Hand Sanitizer" onclick="replicateImage(this, 'Hand Sanitizer')">
-    <img class="replicatedCard" src="4.CovidTerms\7.SafetyDistance.png" alt="Safety Distance" onclick="replicateImage(this, 'Safety Distance')">
-    <img class="replicatedCard" src="4.CovidTerms\8.TakeTheTemperature.png" alt="Take the Temperature" onclick="replicateImage(this, 'Take the Temperature')">
+    <div class="cardContainer">
+      <img class="replicatedCard" src="4.CovidTerms\1.Cough.png" alt="Cough" onclick="replicateImage(this, 'Cough')">
+      <h3>Cough</h3>
+    </div>
+    <div class="cardContainer">
+      <img class="replicatedCard" src="4.CovidTerms\2.ChestPain.png" alt="Chest Pain" onclick="replicateImage(this, 'Chest Pain')">
+      <h3>Chest Pain</h3>
+    </div>
+    <div class="cardContainer">
+      <img class="replicatedCard" src="4.CovidTerms\3.Inhale.png" alt="Inhale" onclick="replicateImage(this, 'Inhale')">
+      <h3>Inhale</h3>
+    </div>
+    <div class="cardContainer">
+      <img class="replicatedCard" src="4.CovidTerms\4.Breathe.png" alt="Breathe" onclick="replicateImage(this, 'Breathe')">
+      <h3>Breathe</h3>
+    </div>
+    <div class="cardContainer">
+      <img class="replicatedCard" src="4.CovidTerms\5.Disinfect.png" alt="Disinfect" onclick="replicateImage(this, 'Disinfect')">
+      <h3>Disinfect</h3>
+    </div>
+    <div class="cardContainer">
+      <img class="replicatedCard" src="4.CovidTerms\6.HandSanitizer.png" alt="Hand Sanitizer" onclick="replicateImage(this, 'Hand Sanitizer')">
+      <h3>Hand Sanitizer</h3>
+    </div>
+    <div class="cardContainer">
+      <img class="replicatedCard" src="4.CovidTerms\7.SafetyDistance.png" alt="Safety Distance" onclick="replicateImage(this, 'Safety Distance')">
+      <h3>Safety Distance</h3>
+    </div>
+    <div class="cardContainer">
+      <img class="replicatedCard" src="4.CovidTerms\8.TakeTheTemperature.png" alt="Take the Temperature" onclick="replicateImage(this, 'Take the Temperature')">
+      <h3>Take the Temperature</h3>
+    </div>
     <!-- Add more health images -->
   </div>
 
   <script>
     let addedImages = []; // Array to store added images
-
-    function replicateCard(card) {
-      const newCard = card.cloneNode(true);
-      newCard.classList.remove("replicatedCard");
-      newCard.style.width = "50px"; // Set the width of the cloned card
-      newCard.style.height = "75px"; // Set the height of the cloned card
-      
-      const headerContainer = document.getElementById("headerContainer");
-      headerContainer.appendChild(newCard);
-
-      // Store information about added image
-      /*addedImages.push({
-        alt: newCard.alt,
-        src: newCard.src
-      });*/
-    }
 
     function replicateImage(image, text) {
       const newImage = image.cloneNode(true);
@@ -106,7 +115,6 @@
 
     function playSpeech() {
       let concatenatedText = "";
-      console.log(concatenatedText);
 
       // Concatenate alt text of added images
       addedImages.forEach(image => {
@@ -116,13 +124,8 @@
       const synth = window.speechSynthesis;
       const utterance = new SpeechSynthesisUtterance(concatenatedText.trim());
 
-      
       // Play speech
-      console.log(concatenatedText);
-
       synth.speak(utterance);
-
-      // Initialize addedImages list to zero
     }
 
     function playButtonClicked() {
